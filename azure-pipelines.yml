@@ -6,4 +6,4 @@ variables:
 
 steps:
   - script: build.bat
-  displayName: 'cmake_script'
+    displayName: 'cmake_script'
