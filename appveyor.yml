@@ -1,15 +1,16 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+
+install:
+ - git submodule update --init --recursive
+
 build_script:
 - cmd: >-
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
     set cc=cl
-
     set cxx=cl
 
-
     set BuidDir=build
-
     set InstallDir=install
-
 
     cmake -GNinja -H.\llvm -B.\%BuidDir% -DCMAKE_INSTALL_PREFIX=%InstallDir% -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=host -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF
