@@ -13,7 +13,7 @@ steps:
   - script: set
     displayName: env
 
-  - script: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
+  - script: dir C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\
     displayName: vcvarsall
 
   - checkout: self
