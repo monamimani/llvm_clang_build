@@ -2,12 +2,13 @@ name: llvm_clang_yml
 resources:
 - repo: self
 
+checkout: self 
+  submodules: true
+
 queue:
   name: Hosted VS2017
   demands: cmake
 
 steps:
-  - checkout: self 
-    submodules: true
   - script: build.bat
     displayName: 'cmake_script'
