@@ -1,10 +1,9 @@
 name: llvm_clang_yml
 
 trigger:
-  branches:
+  paths:
     exclude:
     - README.md
-    - appveyor.yml
 
 resources:
 - repo: self
