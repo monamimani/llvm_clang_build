@@ -2,9 +2,6 @@ name: llvm_clang_yml
 resources:
 - repo: self
 
-checkout: self 
-  submodules: true
-
 pool:
   vmImage: 'VS2017-Win2016'
   demands: cmake
@@ -12,6 +9,6 @@ pool:
 steps:
   - checkout: self
     submodules: true
-    
+
   - script: build.bat
     displayName: 'cmake_script'
