@@ -5,10 +5,13 @@ resources:
 checkout: self 
   submodules: true
 
-queue:
-  name: Hosted VS2017
+pool:
+  vmImage: 'VS2017-Win2016'
   demands: cmake
 
 steps:
+  - checkout: self
+    submodules: true
+    
   - script: build.bat
     displayName: 'cmake_script'
