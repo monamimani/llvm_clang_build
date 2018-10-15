@@ -17,7 +17,8 @@ variables:
 
 pool:
   vmImage: 'VS2017-Win2016'
-  timeoutInMinutes: '180'
+
+timeoutInMinutes: '180'
 
 steps:
   - checkout: self
