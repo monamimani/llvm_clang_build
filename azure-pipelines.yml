@@ -13,7 +13,7 @@ steps:
   - script: set
     displayName: env
 
-  - script: dir C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\
+  - script: dir "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\"
     displayName: vcvarsall
 
   - checkout: self
