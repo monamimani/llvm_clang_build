@@ -10,20 +10,19 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
-  - script: set
-    displayName: env
-
-  - script: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-    displayName: vcvarsall
 
   - checkout: self
     submodules: true
+
+  - script: |
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+    displayName: vcvarsall
 
   - task: CMake@1
     displayName: 'CMake -G "Visual Studio 15 2017 Win64" -H.\llvm -B.\$(BuidDir) -Thost=x64 -DCMAKE_INSTALL_PREFIX=$(InstallDir) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=host -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF'
     inputs:
       workingDirectory: $(Build.SourcesDirectory)
-      cmakeArgs: '-G "Visual Studio 15 2017 Win64" -H.\llvm -B.\$(BuidDir) -Thost=x64 -DCMAKE_INSTALL_PREFIX=$(InstallDir) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=host -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF'
+      cmakeArgs: '-GNinja -H.\llvm -B.\$(BuidDir) -Thost=x64 -DCMAKE_INSTALL_PREFIX=$(InstallDir) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=host -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF'
       
   - task: CMake@1
     displayName: 'CMake --build .\$(BuidDir) --target install'
