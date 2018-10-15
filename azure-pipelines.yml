@@ -13,8 +13,8 @@ steps:
   - script: set
     displayName: env
 
-  - script: dir "C:\Program Files (x86)\Microsoft Visual Studio"
-    displayName: dir
+  - script: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
+    displayName: vcvarsall
 
   - checkout: self
     submodules: true
