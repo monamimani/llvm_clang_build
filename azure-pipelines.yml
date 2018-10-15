@@ -1,6 +1,9 @@
 name: llvm_clang_yml
 
 trigger:
+  branches:
+    include:
+    - master
   paths:
     exclude:
     - README.md
