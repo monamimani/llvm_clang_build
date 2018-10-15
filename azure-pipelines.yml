@@ -10,6 +10,9 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
+  - script: set
+    displayName: env
+
   - checkout: self
     submodules: true
 
@@ -17,6 +20,7 @@ steps:
     displayName: 'CMake -G "Visual Studio 15 2017 Win64" -H.\llvm -B.\$(BuidDir) -Thost=x64 -DCMAKE_INSTALL_PREFIX=$(InstallDir) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=host -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF'
     inputs:
       cmakeArgs: '-G "Visual Studio 15 2017 Win64" -H.\llvm -B.\$(BuidDir) -Thost=x64 -DCMAKE_INSTALL_PREFIX=$(InstallDir) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=host -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF'
+      
   - task: CMake@1
     displayName: 'CMake --build .\$(BuidDir) --target install'
     inputs:
