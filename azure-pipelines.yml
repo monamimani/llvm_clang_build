@@ -45,6 +45,6 @@ jobs:
 
     - script: |
         call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-        CMake --build .\$(BuidDir) --target install
+        CMake --build .\$(BuidDir)
       displayName: CMake build-install
       timeoutInMinutes: 180
