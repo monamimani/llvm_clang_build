@@ -24,14 +24,14 @@ jobs:
 
   steps:
     - script: | 
-        dir D:/a/1/s/
+        dir "D:/a/1/s/"
       displayName: Free space
 
     - checkout: self
       submodules: true
       
     - script: | 
-        dir D:/a/1/s/
+        dir "D:/a/1/s/"
       displayName: Free space
 
     - script: |
@@ -40,7 +40,7 @@ jobs:
       displayName: CMake generation
 
     - script: | 
-        dir D:/a/1/s/
+        dir "D:/a/1/s/"
       displayName: Free space
 
     - script: |
