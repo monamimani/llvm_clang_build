@@ -20,18 +20,18 @@ jobs:
   pool:
     vmImage: 'VS2017-Win2016'
 
-  timeoutInMinutes: 180
+  timeoutInMinutes: 240
 
   steps:
     - script: | 
-        fsutil volume diskfree c:
+        dir D:/a/1/s/
       displayName: Free space
 
     - checkout: self
       submodules: true
       
     - script: | 
-        fsutil volume diskfree c:
+        dir D:/a/1/s/
       displayName: Free space
 
     - script: |
@@ -40,11 +40,11 @@ jobs:
       displayName: CMake generation
 
     - script: | 
-        fsutil volume diskfree c:
+        dir D:/a/1/s/
       displayName: Free space
 
     - script: |
         call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
         CMake --build .\$(BuidDir)
       displayName: CMake build-install
-      timeoutInMinutes: 180
+      timeoutInMinutes: 240
