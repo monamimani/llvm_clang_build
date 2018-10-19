@@ -38,8 +38,7 @@ jobs:
         CMake --build .\$(BuidDir)
       displayName: CMake build-install
       timeoutInMinutes: 240
-  
-  steps:
+
     - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
       displayName: 'Publish GitHub Release llvm#####_clang######'
       inputs:
