@@ -16,6 +16,7 @@ resources:
 variables:
   BuidDir: 'build'
   InstallDir: 'install'
+  VerbosePreference: Continue
 
 jobs:
 - job: string
@@ -60,5 +61,4 @@ jobs:
         releaseBody: 'llvm#####_clang######'
         assetsPattern: $(build.stagingDirectory)\\**\\*.zip
         draft: true
-      env: 
-        $VerbosePreference: Continue
+        prerelease: true
