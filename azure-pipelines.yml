@@ -57,4 +57,4 @@ jobs:
         assetsPattern: $(build.stagingDirectory)\\**\\*.zip
         draft: true
       env: 
-        VerbosePreference: Continue
+        $VerbosePreference: Continue
