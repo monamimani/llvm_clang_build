@@ -31,12 +31,12 @@ jobs:
         call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
         set cc=cl
         set cxx=cl
-        CMake -GNinja -H.\llvm -B.\$(Build.BinariesDirectory) -DCMAKE_INSTALL_PREFIX=$(Build.stagingDirectory) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF
+        CMake -GNinja -H.\llvm -B.\$(BuidDir) -DCMAKE_INSTALL_PREFIX=$(Build.stagingDirectory) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF
       displayName: CMake generation
 
     - script: |
         call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-        CMake --build .\$(Build.BinariesDirectory) --target install
+        CMake --build .\$(BuidDir) --target install
       displayName: CMake build-install
       timeoutInMinutes: 240
 
