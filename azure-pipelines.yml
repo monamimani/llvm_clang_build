@@ -42,9 +42,12 @@ jobs:
     #   displayName: CMake build-install
     #   timeoutInMinutes: 240
 
+    - script: |
+        copy readme.md $(Build.stagingDirectory)\\readme.md
+
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: readme.md
+        rootFolderOrFile: $(Build.stagingDirectory)\\readme.md
         archiveFile: $(Build.stagingDirectory)\\build.zip
 
     - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
