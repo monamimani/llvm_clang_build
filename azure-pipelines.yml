@@ -48,17 +48,18 @@ jobs:
     - task: ArchiveFiles@2
       inputs:
         rootFolderOrFile: readme.md
+        archiveFile: $(Build.stagingDirectory)/$(Build.BuildId).zip
 
     - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
-      displayName: 'Publish GitHub Release llvm#####_clang######'
+      displayName: 'Publish GitHub Release llvm#####_clang######_v$(build.buildNumber)'
       inputs:
         applicationName: 'llvm_clang_buildDevOps'
         token: $(llvmClangGithubToken)
         repo: 'llvm_clang_build'
         owner: monamimani
-        tagName: 'llvm#####_clang######'
-        releaseName: 'llvm#####_clang######'
-        releaseBody: 'llvm#####_clang######'
+        tagName: 'llvm#####_clang######_v$(build.buildNumber)'
+        releaseName: 'llvm#####_clang######_v$(build.buildNumber)'
+        releaseBody: 'llvm#####_clang######_v$(build.buildNumber)'
         assetsPattern: $(build.stagingDirectory)\\**\\*.zip
         draft: true
         prerelease: true
