@@ -60,4 +60,4 @@ jobs:
         tagName: 'llvm_clang_v$(build.buildNumber)'
         releaseName: 'lllvm_clang_v$(build.buildNumber)'
         releaseBody: 'llvm_clang_v$(build.buildNumber)'
-        assetsPattern: $(build.stagingDirectory)\\build.zip
+        assetsPattern: $(build.stagingDirectory)//build.zip
