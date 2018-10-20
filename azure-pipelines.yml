@@ -50,14 +50,24 @@ jobs:
         rootFolderOrFile: $(Build.stagingDirectory)\\readme.md
         archiveFile: $(Build.stagingDirectory)\\build.zip
 
-    - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
-      displayName: 'Publish GitHub Release llvm_clang_v$(Build.BuildId)'
+    # - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
+    #   displayName: 'Publish GitHub Release llvm_clang_v$(Build.BuildId)'
+    #   inputs:
+    #     applicationName: 'llvm_clang_buildDevOps'
+    #     token: $(llvmClangGithubToken)
+    #     repo: 'llvm_clang_build'
+    #     owner: monamimani
+    #     tagName: 'llvm_clang_v$(Build.BuildId)'
+    #     releaseName: 'lllvm_clang_v$(Build.BuildId)'
+    #     releaseBody: 'llvm_clang_v$(Build.BuildId)'
+    #     assetsPattern: $(build.stagingDirectory)\\build.zip
+
+    - task: marcelo-formentao.github-tools.github-release-publish-task.GitHubReleasePublish@0
+      displayName: 'GitHub Release llvm_clang_v$(Build.BuildId)'
       inputs:
-        applicationName: 'llvm_clang_buildDevOps'
-        token: $(llvmClangGithubToken)
-        repo: 'llvm_clang_build'
-        owner: monamimani
-        tagName: 'llvm_clang_v$(Build.BuildId)'
-        releaseName: 'lllvm_clang_v$(Build.BuildId)'
-        releaseBody: 'llvm_clang_v$(Build.BuildId)'
-        assetsPattern: $(build.stagingDirectory)\\build.zip
+        githubEndpoint: monamimani
+        githubRepository: 'monamimani/llvm_clang_build'
+        githubTag: 'v$(Build.BuildNumber)_v$(Build.BuildId)'
+        githubReleaseTitle: 'v$(Build.BuildNumber)_v$(Build.BuildId)'
+        githubReleaseDraft: false
+        githubReleaseAsset: '$(build.stagingDirectory)\\build.zip'
