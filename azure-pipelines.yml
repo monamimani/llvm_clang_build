@@ -43,20 +43,19 @@ jobs:
 
     - script: |
         copy readme.md $(build.stagingDirectory)
-        
-    - script: |
-        D:\a\_tasks\PublishGitHubRelease_52a55b38-da88-4272-9cb5-8627a5197311\0.11.2\PublishGitHubRelease.ps1
 
-    # - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
-    #   displayName: 'Publish GitHub Release llvm#####_clang######'
-    #   inputs:
-    #     verbose: Verbose
-    #     applicationName: 'llvm_clang_buildDevOps'
-    #     token: '$(llvmClangGithubToken)'
-    #     repo: 'llvm_clang_build'
-    #     owner: monamimani
-    #     tagName: 'llvm#####_clang######'
-    #     releaseName: 'llvm#####_clang######'
-    #     releaseBody: 'llvm#####_clang######'
-    #     assetsPattern: $(build.stagingDirectory)\\**\\*.zip
-    #     draft: true
+    - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
+      displayName: 'Publish GitHub Release llvm#####_clang######'
+      inputs:
+        verbose: Verbose
+        applicationName: 'llvm_clang_buildDevOps'
+        token: '$(llvmClangGithubToken)'
+        repo: 'llvm_clang_build'
+        owner: monamimani
+        tagName: 'llvm#####_clang######'
+        releaseName: 'llvm#####_clang######'
+        releaseBody: 'llvm#####_clang######'
+        assetsPattern: $(build.stagingDirectory)\\**\\*.zip
+        draft: true
+        verbose: $true
+        # env: { VerbosePreference: Continue}
