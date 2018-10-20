@@ -35,7 +35,7 @@ jobs:
 
     - script: |
         call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-        CMake --build .\$(BuidDir)
+        CMake --build .\$(BuidDir) --target install
       displayName: CMake build-install
       timeoutInMinutes: 240
 
@@ -50,3 +50,4 @@ jobs:
         releaseName: 'llvm#####_clang######'
         releaseBody: 'llvm#####_clang######'
         draft: true
+        verbose: true
