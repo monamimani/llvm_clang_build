@@ -42,7 +42,11 @@ jobs:
     #   timeoutInMinutes: 240
 
     - script: |
-        copy readme.md $(build.stagingDirectory)
+        set
+
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: readme.md
 
     - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
       displayName: 'Publish GitHub Release llvm#####_clang######'
