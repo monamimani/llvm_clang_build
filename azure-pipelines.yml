@@ -56,4 +56,4 @@ jobs:
         releaseBody: 'llvm#####_clang######'
         assetsPattern: $(build.stagingDirectory)\\**\\*.zip
         draft: true
-        verbose
+        verbose:
