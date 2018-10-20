@@ -42,13 +42,10 @@ jobs:
     #   displayName: CMake build-install
     #   timeoutInMinutes: 240
 
-    - script: |
-        set
-
     - task: ArchiveFiles@2
       inputs:
         rootFolderOrFile: readme.md
-        archiveFile: $(Build.stagingDirectory)/$(Build.BuildId).zip
+        archiveFile: $(Build.stagingDirectory)/build.zip
 
     - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
       displayName: 'Publish GitHub Release llvm_clang_v$(build.buildNumber)'
@@ -60,4 +57,4 @@ jobs:
         tagName: 'llvm_clang_v$(build.buildNumber)'
         releaseName: 'lllvm_clang_v$(build.buildNumber)'
         releaseBody: 'llvm_clang_v$(build.buildNumber)'
-        assetsPattern: $(build.stagingDirectory)\\**\\*.zip
+        assetsPattern: $(build.stagingDirectory)/build.zip
