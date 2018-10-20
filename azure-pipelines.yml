@@ -36,7 +36,7 @@ jobs:
 
     - script: |
         call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-        CMake --build .\$(BuidDir) --target install
+        CMake --build .\$(Build.BinariesDirectory) --target install
       displayName: CMake build-install
       timeoutInMinutes: 240
 
@@ -52,5 +52,6 @@ jobs:
         githubRepository: 'monamimani/llvm_clang_build'
         githubTag: 'llvm_clang_v$(Build.BuildId)'
         githubReleaseTitle: 'llvm_clang_v$(Build.BuildId)'
+        githubReleaseNotes: "Build commit id $(Build.SourceVersion)"
         githubReleaseDraft: false
         githubReleaseAsset: '$(build.ArtifactStagingDirectory)\\$(Build.BuildId).zip'
