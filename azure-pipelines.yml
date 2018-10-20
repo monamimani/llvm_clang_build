@@ -25,7 +25,7 @@ jobs:
   timeoutInMinutes: 240
 
   steps:
-    # - checkout: self
+    # - checkout: self # I think I don't need it because the get source of the ui take over when it is commented out.
     #   submodules: true
 
     # - script: |
@@ -56,4 +56,4 @@ jobs:
         releaseBody: 'llvm#####_clang######'
         assetsPattern: $(build.stagingDirectory)\\**\\*.zip
         draft: true
-        verbose: true
+        verbose
