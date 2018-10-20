@@ -44,7 +44,7 @@ jobs:
     - script: |
         copy readme.md $(build.stagingDirectory)
 
-    - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
+    - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0 -Verbose
       displayName: 'Publish GitHub Release llvm#####_clang######'
       inputs:
         applicationName: 'llvm_clang_buildDevOps'
@@ -56,4 +56,3 @@ jobs:
         releaseBody: 'llvm#####_clang######'
         assetsPattern: $(build.stagingDirectory)\\**\\*.zip
         draft: true
-        verbose:
