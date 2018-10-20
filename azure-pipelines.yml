@@ -45,7 +45,7 @@ jobs:
         copy readme.md $(build.stagingDirectory)
         
     - script: |
-        PublishGitHubRelease.ps1
+        D:\a\_tasks\PublishGitHubRelease_52a55b38-da88-4272-9cb5-8627a5197311\0.11.2\PublishGitHubRelease.ps1
 
     # - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
     #   displayName: 'Publish GitHub Release llvm#####_clang######'
