@@ -51,13 +51,13 @@ jobs:
         archiveFile: $(Build.stagingDirectory)\\build.zip
 
     - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
-      displayName: 'Publish GitHub Release llvm_clang_v$(build.buildNumber)'
+      displayName: 'Publish GitHub Release llvm_clang_v$(Build.BuildId)'
       inputs:
         applicationName: 'llvm_clang_buildDevOps'
         token: $(llvmClangGithubToken)
         repo: 'llvm_clang_build'
         owner: monamimani
-        tagName: 'llvm_clang_v$(build.buildNumber)'
-        releaseName: 'lllvm_clang_v$(build.buildNumber)'
-        releaseBody: 'llvm_clang_v$(build.buildNumber)'
-        assetsPattern: $(build.stagingDirectory)//build.zip
+        tagName: 'llvm_clang_v$(Build.BuildId)'
+        releaseName: 'lllvm_clang_v$(Build.BuildId)'
+        releaseBody: 'llvm_clang_v$(Build.BuildId)'
+        assetsPattern: $(build.stagingDirectory)\\build.zip
