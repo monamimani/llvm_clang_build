@@ -1,5 +1,7 @@
 name: llvm_clang_yml
 
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=vsts&tabs=schema
+
 trigger:
   branches:
     include:
@@ -23,21 +25,24 @@ jobs:
   timeoutInMinutes: 240
 
   steps:
-    - checkout: self
-      submodules: true
+    # - checkout: self
+    #   submodules: true
+
+    # - script: |
+    #     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+    #     set cc=cl
+    #     set cxx=cl
+    #     CMake -GNinja -H.\llvm -B.\$(BuidDir) -DCMAKE_INSTALL_PREFIX=$(InstallDir) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF
+    #   displayName: CMake generation
+
+    # - script: |
+    #     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+    #     CMake --build .\$(BuidDir) --target install
+    #   displayName: CMake build-install
+    #   timeoutInMinutes: 240
 
     - script: |
-        call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-        set cc=cl
-        set cxx=cl
-        CMake -GNinja -H.\llvm -B.\$(BuidDir) -DCMAKE_INSTALL_PREFIX=$(InstallDir) -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=release -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF
-      displayName: CMake generation
-
-    - script: |
-        call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-        CMake --build .\$(BuidDir) --target install
-      displayName: CMake build-install
-      timeoutInMinutes: 240
+        copy readme.md $(build.stagingDirectory)
 
     - task: jakobehn.jakobehn-vsts-github-tasks.publish-github-release.PublishGitHubRelease@0
       displayName: 'Publish GitHub Release llvm#####_clang######'
@@ -49,5 +54,6 @@ jobs:
         tagName: 'llvm#####_clang######'
         releaseName: 'llvm#####_clang######'
         releaseBody: 'llvm#####_clang######'
+        assetsPattern: $(build.stagingDirectory)\\**\\*.zip
         draft: true
         verbose: true
