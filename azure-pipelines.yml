@@ -48,7 +48,7 @@ jobs:
       displayName: CMake build-install
       timeoutInMinutes: 240
 
-    - task: ArchiveFiles
+    - task: ArchiveFiles@2
       inputs:
         rootFolderOrFile: $(Build.stagingDirectory)
         archiveFile: $(Build.ArtifactStagingDirectory)\\$(Build.BuildId).zip
