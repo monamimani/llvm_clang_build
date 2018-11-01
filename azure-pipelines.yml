@@ -24,7 +24,6 @@ jobs:
     vmImage: 'VS2017-Win2016'
 
   strategy:
-    maxParallel: 2
     matrix:
       debugJob:
         configuration: debug
@@ -48,6 +47,12 @@ jobs:
       displayName: CMake build-install
       timeoutInMinutes: 240
 
+- job: ArchiveAndPublish
+  pool:
+    vmImage: 'VS2017-Win2016'
+  dependsOn: GenerateAndBuild
+  condition: succeeded()
+  steps:
     - task: ArchiveFiles@2
       inputs:
         rootFolderOrFile: $(Build.stagingDirectory)
