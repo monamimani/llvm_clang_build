@@ -24,6 +24,7 @@ jobs:
     vmImage: 'VS2017-Win2016'
 
   strategy:
+    maxParallel: 1
     matrix:
       debugJob:
         configuration: debug
