@@ -28,8 +28,8 @@ jobs:
     matrix:
       debugJob:
         configuration: debug
-      releaseJob:
-        configuration: release
+      #releaseJob:
+      #  configuration: release
 
   steps:
     # - checkout: self # I think I don't need it because the get source of the ui take over when it is commented out.
