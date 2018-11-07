@@ -62,7 +62,7 @@ jobs:
     - task: marcelo-formentao.github-tools.github-release-publish-task.GitHubReleasePublish@0
       displayName: 'GitHub Release llvm_clang_v$(Build.BuildId)'
       inputs:
-        githubEndpoint: monamimani
+        githubEndpoint: GitHub monamimani
         githubRepository: 'monamimani/$(Build.Repository.Name)'
         githubTag: 'llvm_clang_v$(Build.BuildId)'
         githubReleaseTitle: 'llvm_clang_v$(Build.BuildId)'
