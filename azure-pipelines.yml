@@ -63,9 +63,9 @@ jobs:
       displayName: 'GitHub Release llvm_clang_v$(Build.BuildId)'
       inputs:
         githubEndpoint: monamimani
-        githubRepository: 'monamimani/llvm_clang_build'
+        githubRepository: 'monamimani/$(Build.Repository.Name)'
         githubTag: 'llvm_clang_v$(Build.BuildId)'
         githubReleaseTitle: 'llvm_clang_v$(Build.BuildId)'
         githubReleaseNotes: "Build commit id $(Build.SourceVersion)"
         githubReleaseDraft: false
-        githubReleaseAsset: '$(build.ArtifactStagingDirectory)\\$(Build.BuildId).zip'
+        githubReleaseAsset: '$(build.BinariesDirectory)\\$(Build.BuildId).zip'
