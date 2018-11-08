@@ -54,9 +54,10 @@ jobs:
   dependsOn: GenerateAndBuild
   condition: succeeded()
   steps:
+    - checkout: none
     - task: ArchiveFiles@2
       inputs:
-        rootFolderOrFile: $(Build.stagingDirectory)
+        rootFolderOrFile: $(Build.BinariesDirectory)
         archiveFile: $(Build.ArtifactStagingDirectory)\\$(Build.BuildId).zip
 
     - task: marcelo-formentao.github-tools.github-release-publish-task.GitHubReleasePublish@0
@@ -68,4 +69,4 @@ jobs:
         githubReleaseTitle: 'llvm_clang_v$(Build.BuildId)'
         githubReleaseNotes: "Build commit id $(Build.SourceVersion)"
         githubReleaseDraft: false
-        githubReleaseAsset: '$(build.BinariesDirectory)\\$(Build.BuildId).zip'
+        githubReleaseAsset: '$(Build.ArtifactStagingDirectory)\\$(Build.BuildId).zip'
