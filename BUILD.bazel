@@ -1,0 +1,9 @@
+
+cc_library(
+  name = "llvm_clang",
+  includes=["include"],
+  #hdrs=["llvm_clang/include"],
+  srcs=glob(["lib/**/*.lib"]),
+  visibility = ["//visibility:public"],
+  copts=["/Iexternal/llvm_clang/include"]
+  )
