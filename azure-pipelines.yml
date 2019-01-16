@@ -39,7 +39,7 @@ jobs:
         call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
         set cc=cl
         set cxx=cl
-        CMake -GNinja -H.\llvm -B.\$(BuidDir) -DCMAKE_INSTALL_PREFIX=$(Build.BinariesDirectory) -DLLVM_ENABLE_PROJECTS="clang;lld" -DLLVM_EXTERNAL_PROJECTS="clang;lld" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DLLVM_EXTERNAL_lld_SOURCE_DIR=.\lld -DCMAKE_BUILD_TYPE=$(configuration) -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF
+        CMake -GNinja -H.\llvm -B.\$(BuidDir) -DCMAKE_INSTALL_PREFIX=$(Build.BinariesDirectory) -DLLVM_ENABLE_PROJECTS="clang" -DLLVM_EXTERNAL_PROJECTS="clang" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=.\clang -DCMAKE_BUILD_TYPE=$(configuration) -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_ENABLE_WARNINGS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_DOCS=OFF
       displayName: CMake generation
 
     - script: |
@@ -50,7 +50,7 @@ jobs:
     - task: ArchiveFiles@2
       inputs:
         rootFolderOrFile: $(Build.BinariesDirectory)
-        archiveFile: $(Build.ArtifactStagingDirectory)\\$(Build.BuildId).zip
+        archiveFile: $(Build.ArtifactStagingDirectory)\$(Build.BuildId).zip
 
     - task: marcelo-formentao.github-tools.github-release-publish-task.GitHubReleasePublish@0
       displayName: 'GitHub Release llvm_clang_v$(Build.BuildId)'
@@ -61,4 +61,4 @@ jobs:
         githubReleaseTitle: 'llvm_clang_v$(Build.BuildId)'
         githubReleaseNotes: "Build commit id $(Build.SourceVersion)"
         githubReleaseDraft: false
-        githubReleaseAsset: '$(Build.ArtifactStagingDirectory)\\$(Build.BuildId).zip'
+        githubReleaseAsset: '$(Build.ArtifactStagingDirectory)\$(Build.BuildId).zip'
