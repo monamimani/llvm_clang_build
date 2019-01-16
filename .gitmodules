@@ -6,3 +6,6 @@
 	path = clang
 	url = https://github.com/llvm-mirror/clang.git
 	master = master
+[submodule "libcxx"]
+	path = libcxx
+	url = https://github.com/llvm-mirror/libcxx.git
